@@ -9,6 +9,7 @@ interface Props {
 }
 
 const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
+  const navigate = useNavigate();
   const [formInfo, setFormInfo] = useState<ContactForm>({
       name: String(contact?.name),
       phone: String(contact?.phone),
@@ -16,7 +17,6 @@ const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
       image: String(contact?.image),
     }
   );
-  const navigate = useNavigate();
 
   const editChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,7 +34,6 @@ const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
           <input
             type="text"
             name="name"
-            value={formInfo.name}
             onChange={editChanges}
             placeholder="Имя"
             required
@@ -45,7 +44,6 @@ const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
           <input
             type="text"
             name="phone"
-            value={formInfo.phone}
             onChange={editChanges}
             placeholder="Номер телефона"
             required
@@ -56,9 +54,8 @@ const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
           <input
             type="email"
             name="email"
-            value={formInfo.email}
             onChange={editChanges}
-            placeholder="Электронная почта"
+            placeholder={`Электронная почта`}
             required
           />
         </div>
@@ -68,14 +65,13 @@ const FormOfContact: React.FC<Props> = ({onSubmit, contact}) => {
           <input
             type="text"
             name="image"
-            value={formInfo.image}
             onChange={editChanges}
           />
           {formInfo.image}
         </div>
 
         <button type="submit">
-          Add new contact
+          Add Contact
         </button>
       </form>
     </div>

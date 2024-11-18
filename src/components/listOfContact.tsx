@@ -1,4 +1,5 @@
 import { Contact } from '../types';
+import { Link } from 'react-router-dom';
 
 interface Props {
   contacts: Contact[];
@@ -8,7 +9,9 @@ interface Props {
 const ListOfContact: React.FC<Props> = ({contacts, onDelete}) => {
   return (
     <div className="container">
-      <button>Add new contact</button>
+      <Link to="/add-contact">
+        <button>Add new Contact</button>
+      </Link>
 
       <ul>
         {contacts.map((contact) => (
@@ -18,8 +21,10 @@ const ListOfContact: React.FC<Props> = ({contacts, onDelete}) => {
             <p><strong>Email:</strong> {contact.email}</p>
             <img src={contact.image} alt={contact.name} className="contact-photo"/>
             <div>
-              <button>Редактировать</button>
-              <button onClick={() => onDelete(contact.id)}>Удалить</button>
+              <Link to={`/edit-contact/${contact.id}`}>
+                <button>Edit</button>
+              </Link>
+              <button onClick={() => onDelete(contact.id)}>Delete</button>
             </div>
           </li>
         ))}
